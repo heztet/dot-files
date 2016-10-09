@@ -3,5 +3,52 @@
 	email = nsmarino96@gmail.com
 [core]
 	editor = vim
+[push]
+	default = matching
+[color]
+	ui = auto
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
 [alias]
+	a = add --all
+	###############
+	b = branch
+	bd = branch -d
+	###############
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	###############
+	d = diff
+	dt = difftool
+	###############
+	f = fetch
+	fo = fetch origin
+	###############
+	co = checkout
+	cob = checkout -b
+	###############
+	ps = push
+	###############
+	pu = pull
+	###############
+	s = status
+	###############
 	prettylog = log --graph --decorate --abbrev-commit --all --pretty=oneline

@@ -1,52 +1,8 @@
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#
-# .bashrc file for ECE 264 Fall 2016
-#
-# Author:   Alexander J. Quinn -- http://engineering.purdue.edu/~aq
-# License:  Public domain (except where noted otherwise below)
-#
-
-#------------------------------------------------------------------------------
-# In ECE 264 (Fall 2016), we are using an alternative installation of gcc on
-# ecegrid.  This gives you gcc v6.1.0, which is quite a bit newer than the
-# default, gcc v4.7.  We also use a bash alias to automatically fill in flags
-# to gcc that will help you catch bugs.  By default, we turn all of this off
-# after the semester, to avoid causing confusion with future classes.
-#------------------------------------------------------------------------------
-
-
 # Make all files that you create private by default (i.e., not readable,
 # writable, or executable by other users on the system).
 umask 077
 
 if [[ $- =~ "i" ]]; then  # If this is an interactive session...
-    ######################################################################
-    # ECE 264
-    #
-
-    #export PATH="/opt/gcc/6.1.0/bin:$PATH:/home/shay/a/ece264s0/16au/bin"
-    export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
-    # Tell bash where to look when you type a command (e.g., '264get', etc.).
-    # * /home/shay/a/ece264p0/share/16au is where we put the ECE 264 scripts.
-    # * $PATH is the list of paths that it would check otherwise.
-    # * /opt/gcc/6.1.0/bin is where ECN has installed the latest version of gcc.
-
-    alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
-    # Tell bash to automatically add some standard arguments to gcc.  This ensures
-    # that everyone in the class is compiling in the same way.
-    # * --std=c99 means to use the C99 version of the C language.
-    # * -g means to enable gdb by storing information such as your variable names
-    #   in the executable
-    # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
-    #   you know about anomolies in your code might indicate a bug.
-
-    alias valgrind='valgrind --leak-check=full'
-    # Tell bash to automatically add the --leak-check=full argument whenever you
-    # type 'valgrind'.
-
-    alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
-
-
     ######################################################################
     # PROMPT FORMAT
     #
@@ -109,6 +65,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Personal Functions/Aliases
     ######################################################################
 
+    # Home
+    alias home='cd ~'
+
     # Vi -> vim
     alias vi='vim'
 
@@ -127,6 +86,31 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # Load .bashrc
     alias loadbrc='. ~/.bashrc'
+
+    # Copy files to dot-files
+    alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc'
+
+    ######################################################################
+    # ECE 264 Functions/Aliases
+    ######################################################################
+    
+    # Instructor commands
+    # Tell bash where to look when you type a command (e.g., '264get', etc.).
+    export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
+    alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
+    # Tell bash to automatically add some standard arguments to gcc.  This ensures
+    # that everyone in the class is compiling in the same way.
+    # * --std=c99 means to use the C99 version of the C language.
+    # * -g means to enable gdb by storing information such as your variable names
+    #   in the executable
+    # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
+    #   you know about anomolies in your code might indicate a bug.
+
+    alias valgrind='valgrind --leak-check=full'
+    # Tell bash to automatically add the --leak-check=full argument whenever you
+    # type 'valgrind'.
+
+    alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
 
     # Copy .bashrc and .vimrc to 264 folder
     alias copyrc='cp ~/.bashrc ~/264/bashrc.backup && cp ~/.vimrc ~/264/vimrc.backup'
