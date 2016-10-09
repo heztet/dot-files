@@ -1,0 +1,7 @@
+[user]
+	name = Nicky Marino
+	email = nsmarino96@gmail.com
+[core]
+	editor = vim
+[alias]
+	prettylog = log --graph --decorate --abbrev-commit --all --pretty=oneline
