@@ -7,7 +7,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # PROMPT FORMAT
     #
     # Make your bash prompt show your current directory in color.
-    #
     # Credit:  Cygwin, license: GPL, from the default .bashrc that comes with Cygwin
     export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
     export PS2='> '
@@ -88,29 +87,30 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias loadbrc='. ~/.bashrc'
 
     # Copy files to dot-files
-    alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc'
+    alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
 
     ######################################################################
     # ECE 264 Functions/Aliases
     ######################################################################
     
-    # Instructor commands
-    # Tell bash where to look when you type a command (e.g., '264get', etc.).
-    export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
-    alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
-    # Tell bash to automatically add some standard arguments to gcc.  This ensures
-    # that everyone in the class is compiling in the same way.
-    # * --std=c99 means to use the C99 version of the C language.
-    # * -g means to enable gdb by storing information such as your variable names
-    #   in the executable
-    # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
-    #   you know about anomolies in your code might indicate a bug.
+    ########### Instructor commands
+        # Tell bash where to look when you type a command (e.g., '264get', etc.).
+        export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
+        alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
+        # Tell bash to automatically add some standard arguments to gcc.  This ensures
+        # that everyone in the class is compiling in the same way.
+        # * --std=c99 means to use the C99 version of the C language.
+        # * -g means to enable gdb by storing information such as your variable names
+        #   in the executable
+        # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
+        #   you know about anomolies in your code might indicate a bug.
 
-    alias valgrind='valgrind --leak-check=full'
-    # Tell bash to automatically add the --leak-check=full argument whenever you
-    # type 'valgrind'.
+        alias valgrind='valgrind --leak-check=full'
+        # Tell bash to automatically add the --leak-check=full argument whenever you
+        # type 'valgrind'.
 
-    alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
+        alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
+    ###########
 
     # Copy .bashrc and .vimrc to 264 folder
     alias copyrc='cp ~/.bashrc ~/264/bashrc.backup && cp ~/.vimrc ~/264/vimrc.backup'
