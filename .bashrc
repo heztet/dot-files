@@ -159,6 +159,8 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias gdbhw9='gcc -o test_team.o test_team.c team.c && gdb ./test_team.o'
     alias submithw9='264submit hw09 team.c team.h test_team.c expected.txt warmup.c'
 
+    alias submithw10='264submit hw10 team.c team.h test_team.c expected.txt warmup.c'
+
     alias runtest='gcc -o test.o test.c && ./test.o'
 fi
 
