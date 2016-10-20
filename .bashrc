@@ -67,6 +67,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Home
     alias home='cd ~'
 
+    # Quit -> exit
+    alias quit='exit'
+
     # Vi -> vim
     alias vi='vim'
 

@@ -57,7 +57,7 @@ command DisableMouseAndArrowKeys :call DisableMouseAndArrowKeys()
 "MAPPING FOR CURRENT HOMEWORK (ECE 264)
 "
 nmap <F5> :!clear && gcc test_team.c team.c --std=c99 --pedantic -g -Wall -Wshadow -Wvla -o test_team.o && ./test_team.o \| diff - expected.txt<CR>
-nmap :ex :Explore
+
 
 "_________________________________________________________________________
 " MAPPINGS for normal mode
@@ -111,6 +111,8 @@ nnoremap <s-tab> gT
 " [ (right bracket) - change tabs to the right
 nnoremap <tab> gt
 
+nmap :ex :Explore
+nmap :e :tabe
 
 "_________________________________________________________________________
 " MAPPINGS for insert mode
