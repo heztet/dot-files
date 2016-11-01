@@ -56,7 +56,7 @@ command DisableMouseAndArrowKeys :call DisableMouseAndArrowKeys()
 "__________________________________________________
 "MAPPING FOR CURRENT HOMEWORK (ECE 264)
 "
-nmap <F5> :!clear && gcc test_team.c team.c --std=c99 --pedantic -g -Wall -Wshadow -Wvla -o test_team.o && ./test_team.o \| diff - expected.txt<CR>
+nmap <F5> :!clear && gcc index.c -o index.o --std=c99 --pedantic -g -Wall -Wshadow -Wvla -o test_team.o && ./index.o<CR>
 
 
 "_________________________________________________________________________

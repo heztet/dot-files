@@ -121,9 +121,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Jump to homework folder
     function gg() {
         if [ $# -eq 0 ]; then # No input args
-            pushd ~/264/
+            cd ~/264/
         else
-            pushd ~/264/hw$1
+            cd ~/264/hw$1
         fi
     }
 
@@ -164,7 +164,13 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     alias submithw10='264submit hw10 team.c team.h test_team.c expected.txt warmup.c'
 
-    alias runtest='gcc -o test.o test.c && ./test.o'
+    alias compile11='gcc -o test_index.o test_index.c index.c'
+    alias warmup11='gcc -o warmup.o warmup.c && ./warmup.o'
+    alias submithw11='264submit hw11 warmup.c index.c index.h indexer.c test_index.c expected.txt'
+    alias runhw11='gcc -o indexer.o index.c indexer.c && ./indexer.o'
+    alias gdbhw11='runhw11 && gdb ./indexer.o'
+    alias testhw11='compile11 && ./test_index.o | diff expected.txt -'
+    alias valhw11='compile11 && valgrind ./test_index.o' 
 fi
 
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
