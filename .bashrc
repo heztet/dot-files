@@ -13,6 +13,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     export PS4='+ '
     # To learn more about these codes, see:
     # http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html ...
+    #
+    # 256 COLOR
+    if [ "$TERM" = xterm ]; then TERM=xterm-256color; fi 
 
 
     ######################################################################
@@ -171,6 +174,13 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias gdbhw11='runhw11 && gdb ./indexer.o'
     alias testhw11='compile11 && ./test_index.o | diff expected.txt -'
     alias valhw11='compile11 && valgrind ./test_index.o' 
+
+    alias compile12='gcc -o test_sorts.o test_sorts.c sorts.c'
+    alias runhw12='compile12 && ./test_sorts.o'
+    alias testhw12='compile12 && ./test_sorts.o | diff expected.txt -'
+    alias valhw12='compile12 && valgrind ./test_sorts.o'
+    alias submithw12='264submit hw12 sorts.c sorts.h test_sorts.c expected.txt'
+    alias gdbhw12='compile12 && gdb ./test_sorts.o'
 fi
 
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
