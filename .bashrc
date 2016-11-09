@@ -14,8 +14,12 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # To learn more about these codes, see:
     # http://www.cyberciti.biz/tips/howto-linux-unix-bash-shell-setup-prompt.html ...
     #
-    # 256 COLOR
+    # DESKTOP LINUX FIXES
+    # 256 color
     if [ "$TERM" = xterm ]; then TERM=xterm-256color; fi 
+    # Vim as default editor
+    export VISUAL=vim
+    export EDITOR="$VISUAL"
 
 
     ######################################################################
@@ -125,6 +129,11 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     function gg() {
         if [ $# -eq 0 ]; then # No input args
             cd ~/264/
+        elif [ "$1" = "ez" ]; then
+            echo ${PWD##*/}
+            264submit ${PWD##*/} *.c *.txt *.h
+        elif [ "$1" = "l" ]; then
+            cd ~/264/lectures
         else
             cd ~/264/hw$1
         fi
