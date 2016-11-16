@@ -134,6 +134,8 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
             264submit ${PWD##*/} *.c *.txt *.h
         elif [ "$1" = "l" ]; then
             cd ~/264/lectures
+        elif [ "$1" = "h" ]; then
+            cd ~/264/honors
         else
             cd ~/264/hw$1
         fi
@@ -143,17 +145,28 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias ggl='pushd ~/264/lectures'
 
     ### Homework Aliases
+    # Generic warmups
+    alias compilew='gcc warmup.c -o warmup.o'
+    alias runw='compilew && ./warmup.o'
+    alias valw='compilew && valgrind ./warmup.o'
+    alias gdbw='compilew && gdb ./warmup.o'
+
+    # HW 02
     alias testhw2='gcc -o hw02test hw02test.c hw02.c && ./hw02test | diff hw02test.txt -'
 
+    # HW 03
     alias testhw4='gcc -o test_mintf.o test_mintf.c mintf.c && ./test_mintf.o | diff test_mintf.txt -'
 
+    # HW 06
     alias testhw6='gcc -o test_smintf.o test_smintf.c smintf.c && ./test_smintf.o | diff -B expected.txt -'
     alias runhw6='gcc -o test_smintf.o test_smintf.c smintf.c && ./test_smintf.o'
 
+    # HW 07
     alias testhw7='gcc -o test_team.o test_team.c team.c && ./test_team.o | diff -B expected.txt -'
     alias runhw7='gcc -o test_team.o test_team.c team.c && ./test_team.o'
     alias submithw7='264submit hw07 team.c team.h test_team.c warmup.c expected.txt'
 
+    # HW 08
     alias warmup8='gcc -o warmup.o warmup.c && ./warmup.o'
     alias testwarmup8='warmup8 && val8'
     alias testhw8='gcc -o test_team.o test_team.c team.c && ./test_team.o | diff -B expected.txt -'
@@ -164,6 +177,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias gdbhw8='gcc -o test_team.o test_team.c team.c && gdb ./test_team.o'
     alias submithw8='264submit hw08 team.c team.h test_team.c expected.txt warmup.c'
 
+    # HW 09
     alias warmup9='gcc -o warmup.o warmup.c && ./warmup.o'
     alias testwarmup9='warmup9 && val9'
     alias testhw9='gcc -o test_team.o test_team.c team.c && ./test_team.o | diff -B expected.txt -'
@@ -174,8 +188,10 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias gdbhw9='gcc -o test_team.o test_team.c team.c && gdb ./test_team.o'
     alias submithw9='264submit hw09 team.c team.h test_team.c expected.txt warmup.c'
 
+    # HW 10
     alias submithw10='264submit hw10 team.c team.h test_team.c expected.txt warmup.c'
 
+    # HW 11
     alias compile11='gcc -o test_index.o test_index.c index.c'
     alias warmup11='gcc -o warmup.o warmup.c && ./warmup.o'
     alias submithw11='264submit hw11 warmup.c index.c index.h indexer.c test_index.c expected.txt'
@@ -184,12 +200,22 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias testhw11='compile11 && ./test_index.o | diff expected.txt -'
     alias valhw11='compile11 && valgrind ./test_index.o' 
 
+    # HW 12
     alias compile12='gcc -o test_sorts.o test_sorts.c sorts.c'
     alias runhw12='compile12 && ./test_sorts.o'
     alias testhw12='compile12 && ./test_sorts.o | diff expected.txt -'
     alias valhw12='compile12 && valgrind ./test_sorts.o'
     alias submithw12='264submit hw12 sorts.c sorts.h test_sorts.c expected.txt'
     alias gdbhw12='compile12 && gdb ./test_sorts.o'
+
+    # HW 13
+    alias compile13='gcc test_bmp.c bmp.c -o test_bmp.o'
+    alias out13='./test_bmp.o'
+    alias runhw13='compile13 && out13'
+    alias testhw13='compile13 && out13 | diff expected.txt -'
+    alias valhw13='compile13 && valgrind out13'
+    alias gdbhw13='compile13 && gdb out13'
+    alias submithw13='264submit hw13 test_bmp.c bmp.c expected.txt warmup.c a.txt b.txt'
 fi
 
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
