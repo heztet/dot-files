@@ -95,6 +95,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # Load .bashrc
     alias loadbrc='. ~/.bashrc'
+    alias lbrc='loadbrc'
 
     # Copy files to dot-files
     alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
@@ -130,7 +131,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
         if [ $# -eq 0 ]; then # No input args
             cd ~/264/
         elif [ "$1" = "ez" ]; then
-            echo ${PWD##*/}
             264submit ${PWD##*/} *.c *.txt *.h
         elif [ "$1" = "l" ]; then
             cd ~/264/lectures
@@ -140,9 +140,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
             cd ~/264/hw$1
         fi
     }
-
-    # Jump to lectures folder
-    alias ggl='pushd ~/264/lectures'
 
     ### Homework Aliases
     # Generic warmups
@@ -213,8 +210,8 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias out13='./test_bmp.o'
     alias runhw13='compile13 && out13'
     alias testhw13='compile13 && out13 | diff expected.txt -'
-    alias valhw13='compile13 && valgrind out13'
-    alias gdbhw13='compile13 && gdb out13'
+    alias valhw13='compile13 && valgrind ./test_bmp.o'
+    alias gdbhw13='compile13 && gdb ./test_bmp.o'
     alias submithw13='264submit hw13 test_bmp.c bmp.c expected.txt warmup.c a.txt b.txt'
 fi
 
