@@ -3,12 +3,17 @@
 umask 077
 
 if [[ $- =~ "i" ]]; then  # If this is an interactive session...
+    # Put git branch in prompt
+    parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    }
+
     ######################################################################
     # PROMPT FORMAT
     #
     # Make your bash prompt show your current directory in color.
     # Credit:  Cygwin, license: GPL, from the default .bashrc that comes with Cygwin
-    export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\n\$ '
+    export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\[\e[36m\]\$(parse_git_branch)\[\e[0m\]\n\$ "
     export PS2='> '
     export PS4='+ '
     # To learn more about these codes, see:
@@ -66,6 +71,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     bind '"\e[A": history-search-backward'
     bind '"\e[B": history-search-forward'
     # Credit: 'user287613' @ http://askubuntu.com/a/475614 - License: CC-BY-SA-3.0
+
+    # Core dump c files if crash
+    ulimit -c unlimited
 
     ######################################################################
     # Personal Functions/Aliases
