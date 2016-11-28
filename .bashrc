@@ -86,6 +86,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias vi='vim'
     alias c='clear'
     alias ..='cd ..'
+    alias lh='ls -d .*' # hidden files only
 
     # Various 'ls'
     alias l='ll'
@@ -103,6 +104,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # Copy files to dot-files
     alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
+
+    # Go backwards 'n' times
+    function cdn() { for i in `seq $1`; do cd ..; done; }
 
     ######################################################################
     # ECE 264 Functions/Aliases
