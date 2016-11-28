@@ -5,9 +5,6 @@
 "
 " vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab:
 
-set nocompatible " Use VIM settings rather than Vi settings; this *must* be
-                 " first in .vimrc
-
 "_________________________________________________________________________
 " GENERAL SETTINGS
 "
@@ -52,12 +49,6 @@ function! DisableMouseAndArrowKeys()
 	set mouse=
 endfunction
 command DisableMouseAndArrowKeys :call DisableMouseAndArrowKeys()
-
-"__________________________________________________
-"MAPPING FOR CURRENT HOMEWORK (ECE 264)
-"
-nmap <F5> :!clear && gcc index.c -o index.o --std=c99 --pedantic -g -Wall -Wshadow -Wvla -o test_team.o && ./index.o<CR>
-
 
 "_________________________________________________________________________
 " MAPPINGS for normal mode

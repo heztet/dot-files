@@ -30,7 +30,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     ######################################################################
     # ALIASES
     #
-
+    alias runapple='echo "test"'
     # mcd
     function mcd() {
         # Make a directory and then change to it.  This will be used like an alias.
@@ -79,17 +79,13 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Personal Functions/Aliases
     ######################################################################
 
-    # Home
     alias home='cd ~'
-
-    # Quit -> exit
+    alias h='home'
     alias quit='exit'
-
-    # Vi -> vim
+    alias q='quit'
     alias vi='vim'
-
-    # Clear screen
     alias c='clear'
+    alias ..='cd ..'
 
     # Various 'ls'
     alias l='ll'
@@ -136,14 +132,22 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # Jump to homework folder
     function gg() {
+        # "" -> 264/
         if [ $# -eq 0 ]; then # No input args
             cd ~/264/
+        # "ez" -> Submit
         elif [ "$1" = "ez" ]; then
             264submit ${PWD##*/} *.c *.txt *.h
+        # "t" -> Test
+        elif [ "$1" = "t" ]; then
+            264test ${PWD##*/}
+        # "l" -> 264/lectures
         elif [ "$1" = "l" ]; then
             cd ~/264/lectures
+        # "h" -> 264/honors
         elif [ "$1" = "h" ]; then
             cd ~/264/honors
+        # Anything else -> 264/hw<arg>
         else
             cd ~/264/hw$1
         fi
@@ -155,6 +159,12 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias runw='compilew && ./warmup.o'
     alias valw='compilew && valgrind ./warmup.o'
     alias gdbw='compilew && gdb ./warmup.o'
+
+    # Honors
+    alias compileh='gcc test_print_integer.c print_integer.c -o test_print_integer.o'
+    alias runh='compileh && ./test_print_integer.o'
+    alias valh='compileh && valgrind ./test_print_integer.o'
+    alias gdbh='compileh && gdb ./test_print_integer.o'
 
     # HW 02
     alias testhw2='gcc -o hw02test hw02test.c hw02.c && ./hw02test | diff hw02test.txt -'
@@ -221,6 +231,15 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias valhw13='compile13 && valgrind ./test_bmp.o'
     alias gdbhw13='compile13 && gdb ./test_bmp.o'
     alias submithw13='264submit hw13 test_bmp.c bmp.c expected.txt warmup.c a.txt b.txt'
+
+    # HW 14
+    alias compile14='gcc -pthread test_mtat.c mtat.c -o test_mtat.o'
+    alias out14='./test_mtat.o'
+    alias runhw14='compile14 && out14'
+    alias testhw14='compile14 && out14 | diff expected.txt -'
+    alias valhw14='compile14 && valgrind ./test_mtat.o'
+    alias gdbhw14='compile14 && gdb ./test_mtat.o'
+    alias submithw13='264submit hw14 test_mtat.c bmp.c bmp.h mtat.c mtat.h warmup.c expected.txt'
 fi
 
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
