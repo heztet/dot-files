@@ -30,7 +30,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     ######################################################################
     # ALIASES
     #
-    alias runapple='echo "test"'
+
     # mcd
     function mcd() {
         # Make a directory and then change to it.  This will be used like an alias.
@@ -45,9 +45,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # rm
     alias rm='rm'
-    # alias rm='rm -i'
-    # -i = --interactive ... means to prompt before deleting any files, unless
-    # -f is added
 
     # whence
     alias whence='type -a'
@@ -72,8 +69,12 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     bind '"\e[B": history-search-forward'
     # Credit: 'user287613' @ http://askubuntu.com/a/475614 - License: CC-BY-SA-3.0
 
+    # gdb core file maintenance
     # Core dump c files if crash
-    ulimit -c unlimited
+    ulimit -c 2000 #unlimited
+    # Remove core files in current directory
+    alias rc='rm core.*'
+
 
     ######################################################################
     # Personal Functions/Aliases
@@ -104,6 +105,8 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # Copy files to dot-files
     alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
+    # Push dot files to home directory
+    alias setdots='cp ~/dot-files/.gitconfig ~/.gitconfig && cp ~/dot-files/.bashrc ~/.bashrc && cp ~/dot-files/.vimrc ~/.vimrc && cp ~/dot-files/.bash_profile ~/.bash_profile' 
 
     # Go backwards 'n' times
     function cdn() { for i in `seq $1`; do cd ..; done; }
@@ -129,7 +132,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
         # type 'valgrind'.
 
         alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
-    ###########
+    #####################################################################
 
     # Copy .bashrc and .vimrc to 264 folder
     alias copyrc='cp ~/.bashrc ~/264/bashrc.backup && cp ~/.vimrc ~/264/vimrc.backup'
@@ -237,7 +240,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias submithw13='264submit hw13 test_bmp.c bmp.c expected.txt warmup.c a.txt b.txt'
 
     # HW 14
-    alias compile14='gcc -pthread test_mtat.c mtat.c -o test_mtat.o'
+    alias compile14='gcc -pthread test_mtat.c mtat.c bmp.c -o test_mtat.o'
     alias out14='./test_mtat.o'
     alias runhw14='compile14 && out14'
     alias testhw14='compile14 && out14 | diff expected.txt -'
