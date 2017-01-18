@@ -111,6 +111,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Go backwards 'n' times
     function cdn() { for i in `seq $1`; do cd ..; done; }
 
+    # Open octave
+    alias o='octave'
+
     ######################################################################
     # ECE 142 Functions/Aliases
     ######################################################################
