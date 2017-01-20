@@ -115,9 +115,25 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias o='octave'
 
     ######################################################################
-    # ECE 142 Functions/Aliases
+    # ECE 368 Functions/Aliases
+    ######################################################################
+
+    # Jump to homework folder
+    function gg() {
+        # "" -> 368/
+        if [ $# -eq 0 ]; then # No input args
+            cd ~/368/
+        # Anything else -> 368/hw<arg>
+        else
+            cd ~/368/hw$1
+        fi
+    }
+
+    ######################################################################
+    # ENGR 142 Functions/Aliases
     ######################################################################
     alias egcc='gcc -Wall -Werror -lm'
+    # u
 
     ######################################################################
     # ECE 264 Functions/Aliases
@@ -145,28 +161,28 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Copy .bashrc and .vimrc to 264 folder
     alias copyrc='cp ~/.bashrc ~/264/bashrc.backup && cp ~/.vimrc ~/264/vimrc.backup'
 
-    # Jump to homework folder
-    function gg() {
-        # "" -> 264/
-        if [ $# -eq 0 ]; then # No input args
-            cd ~/264/
-        # "ez" -> Submit
-        elif [ "$1" = "ez" ]; then
-            264submit ${PWD##*/} *.c *.txt *.h
-        # "t" -> Test
-        elif [ "$1" = "t" ]; then
-            264test ${PWD##*/}
-        # "l" -> 264/lectures
-        elif [ "$1" = "l" ]; then
-            cd ~/264/lectures
-        # "h" -> 264/honors
-        elif [ "$1" = "h" ]; then
-            cd ~/264/honors
-        # Anything else -> 264/hw<arg>
-        else
-            cd ~/264/hw$1
-        fi
-    }
+    ## Jump to homework folder
+    #function gg() {
+    #    # "" -> 264/
+    #    if [ $# -eq 0 ]; then # No input args
+    #        cd ~/264/
+    #    # "ez" -> Submit
+    #    elif [ "$1" = "ez" ]; then
+    #        264submit ${PWD##*/} *.c *.txt *.h
+    #    # "t" -> Test
+    #    elif [ "$1" = "t" ]; then
+    #        264test ${PWD##*/}
+    #    # "l" -> 264/lectures
+    #    elif [ "$1" = "l" ]; then
+    #        cd ~/264/lectures
+    #    # "h" -> 264/honors
+    #    elif [ "$1" = "h" ]; then
+    #        cd ~/264/honors
+    #    # Anything else -> 264/hw<arg>
+    #    else
+    #        cd ~/264/hw$1
+    #    fi
+    #}
 
     ### Homework Aliases
     # Generic warmups
