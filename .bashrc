@@ -115,8 +115,15 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias o='octave'
 
     ######################################################################
+    # ENGR 142 Functions/Aliases
+    ######################################################################
+    alias egcc='gcc -Wall -Werror -lm'
+
+    ######################################################################
     # ECE 368 Functions/Aliases
     ######################################################################
+    
+    alias gcc='gcc -Werror -Wall -Wshadow -O3'
 
     # Jump to homework folder
     function gg() {
@@ -129,11 +136,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
         fi
     }
 
-    ######################################################################
-    # ENGR 142 Functions/Aliases
-    ######################################################################
-    alias egcc='gcc -Wall -Werror -lm'
-    # u
 
     ######################################################################
     # ECE 264 Functions/Aliases
@@ -142,7 +144,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     ########### Instructor commands
         # Tell bash where to look when you type a command (e.g., '264get', etc.).
         export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
-        alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
+        # alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
         # Tell bash to automatically add some standard arguments to gcc.  This ensures
         # that everyone in the class is compiling in the same way.
         # * --std=c99 means to use the C99 version of the C language.
