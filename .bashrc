@@ -125,6 +125,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     
     alias gcc='gcc -Werror -Wall -Wshadow -O3'
 
+    # HW 01
+    alias testhw1='gcc sorting.c test_sorting.c -o test_sorting && ./test_sorting'
+
     # Jump to homework folder
     function gg() {
         # "" -> 368/
