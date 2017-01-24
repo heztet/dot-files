@@ -26,7 +26,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     export VISUAL=vim
     export EDITOR="$VISUAL"
 
-
     ######################################################################
     # ALIASES
     #
@@ -124,9 +123,12 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     ######################################################################
     
     alias gcc='gcc -Werror -Wall -Wshadow -O3'
+    alias valgrind='valgrind --leak-check=full'
+    alias v='valgrind'
 
     # HW 01
-    alias testhw1='gcc sorting.c test_sorting.c -o test_sorting && ./test_sorting'
+    alias testhw1='gcc sorting.c test_sorting.c -o test_sorting.out && ./test_sorting.out | diff test_sorting.txt -'
+    alias vtesthw1='testhw1 && valgrind ./test_sorting.out'
 
     # Jump to homework folder
     function gg() {
