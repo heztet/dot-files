@@ -9,6 +9,29 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     }
 
     ######################################################################
+    # ECE 264 Functions/Aliases
+    ######################################################################
+    
+    ########### Instructor commands
+        # Tell bash where to look when you type a command (e.g., '264get', etc.).
+        export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
+        # alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
+        # Tell bash to automatically add some standard arguments to gcc.  This ensures
+        # that everyone in the class is compiling in the same way.
+        # * --std=c99 means to use the C99 version of the C language.
+        # * -g means to enable gdb by storing information such as your variable names
+        #   in the executable
+        # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
+        #   you know about anomolies in your code might indicate a bug.
+
+        alias valgrind='valgrind --leak-check=full'
+        # Tell bash to automatically add the --leak-check=full argument whenever you
+        # type 'valgrind'.
+
+        alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
+    #####################################################################
+
+    ######################################################################
     # PROMPT FORMAT
     #
     # Make your bash prompt show your current directory in color.
@@ -122,7 +145,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # ECE 368 Functions/Aliases
     ######################################################################
     
-    alias gcc='gcc -Werror -Wall -Wshadow -O3'
+    alias gcc='gcc -Werror -Wall -Wshadow'
     alias valgrind='valgrind --leak-check=full'
     alias v='valgrind'
 
@@ -142,28 +165,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     }
 
 
-    ######################################################################
-    # ECE 264 Functions/Aliases
-    ######################################################################
-    
-    ########### Instructor commands
-        # Tell bash where to look when you type a command (e.g., '264get', etc.).
-        export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
-        # alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
-        # Tell bash to automatically add some standard arguments to gcc.  This ensures
-        # that everyone in the class is compiling in the same way.
-        # * --std=c99 means to use the C99 version of the C language.
-        # * -g means to enable gdb by storing information such as your variable names
-        #   in the executable
-        # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
-        #   you know about anomolies in your code might indicate a bug.
-
-        alias valgrind='valgrind --leak-check=full'
-        # Tell bash to automatically add the --leak-check=full argument whenever you
-        # type 'valgrind'.
-
-        alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
-    #####################################################################
 
     # Copy .bashrc and .vimrc to 264 folder
     alias copyrc='cp ~/.bashrc ~/264/bashrc.backup && cp ~/.vimrc ~/264/vimrc.backup'
@@ -280,4 +281,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias submithw13='264submit hw14 test_mtat.c bmp.c bmp.h mtat.c mtat.h warmup.c expected.txt'
 fi
 
+export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
+
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
+alias valdb="valgrind --vgdb-error=0"
