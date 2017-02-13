@@ -216,3 +216,9 @@ augroup myvimrc
 	au!
 	au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+"_________________________________________________________________________
+" SAVE VIEW SETTINGS BETWEEN SESSIONS
+"
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
