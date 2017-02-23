@@ -140,6 +140,8 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # ENGR 142 Functions/Aliases
     ######################################################################
     alias egcc='gcc -Wall -Werror -lm'
+    alias rfai='cd /share/engr14x && python3 rfai.py'
+    alias eagle='ssh marinon@eagle.ecn.purdue.edu'
 
     ######################################################################
     # ECE 368 Functions/Aliases
