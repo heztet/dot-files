@@ -1,6 +1,6 @@
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
-" .vimrc file of Alex Quinn
+" .vimrc by Nicky Marino
 " License:  public domain (use as you please, no credit needed)
 "
 " vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab:
