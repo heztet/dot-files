@@ -136,6 +136,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Open octave
     alias o='octave'
 
+    # Python 3
+    alias p='python3'
+
     ######################################################################
     # ENGR 142 Functions/Aliases
     ######################################################################
