@@ -9,29 +9,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     }
 
     ######################################################################
-    # ECE 264 Functions/Aliases
-    ######################################################################
-    
-    ########### Instructor commands
-        # Tell bash where to look when you type a command (e.g., '264get', etc.).
-        export PATH="/opt/gcc/6.1.0/bin:/home/shay/a/ece264s0/16au/bin:$PATH"
-        # alias gcc="gcc -std=c99 -g -Wall -Wshadow --pedantic -Wvla"
-        # Tell bash to automatically add some standard arguments to gcc.  This ensures
-        # that everyone in the class is compiling in the same way.
-        # * --std=c99 means to use the C99 version of the C language.
-        # * -g means to enable gdb by storing information such as your variable names
-        #   in the executable
-        # * -Wall, -Wshadow, --pedantic, and Wvla turn on extra warnings to let
-        #   you know about anomolies in your code might indicate a bug.
-
-        alias valgrind='valgrind --leak-check=full'
-        # Tell bash to automatically add the --leak-check=full argument whenever you
-        # type 'valgrind'.
-
-        alias 264version_bashrc='echo "You have version 2 of the .bashrc for ECE 26400 Fall 2016.";echo;echo PATH=$PATH;echo;ls -l ~/.bashrc ~/.bash_profile ~/.vimrc'
-    #####################################################################
-
-    ######################################################################
     # PROMPT FORMAT
     #
     # Make your bash prompt show your current directory in color.
@@ -50,8 +27,50 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     export EDITOR="$VISUAL"
 
     ######################################################################
-    # ALIASES
-    #
+    # Personal Functions/Aliases
+    ######################################################################
+
+    alias home='cd ~'
+    alias h='home'
+    alias quit='exit'
+    alias q='quit'
+    alias vi='vim'
+    alias c='clear'
+    alias ..='cd ..'
+    alias lh='ls -d .*' # hidden files only
+
+    # Various 'ls'
+    alias l='ll'
+    alias la='ls -la'
+
+    # Edit .bashrc or .vimrc
+    alias bashrc='vim ~/.bashrc'
+    alias vimrc='vim ~/.vimrc'
+    alias brc='bashrc'
+    alias vrc='vimrc'
+
+    # Load .bashrc
+    alias loadbrc='. ~/.bashrc'
+    alias lbrc='loadbrc'
+
+    # Copy files to dot-files
+    alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
+    # Push dot files to home directory
+    alias setdots='cp ~/dot-files/.gitconfig ~/.gitconfig && cp ~/dot-files/.bashrc ~/.bashrc && cp ~/dot-files/.vimrc ~/.vimrc && cp ~/dot-files/.bash_profile ~/.bash_profile && . ~/.bashrc' 
+
+    # Go backwards 'n' times
+    function cdn() { for i in `seq $1`; do cd ..; done; }
+
+    # Open octave
+    alias o='octave'
+
+    # Python 3
+    alias p='python3'
+
+    # GCC/Valgrind
+    alias gcc='gcc -Werror -Wall -Wshadow'
+    alias valgrind='valgrind --leak-check=full'
+    alias v='valgrind'
 
     # mcd
     function mcd() {
@@ -97,72 +116,13 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Remove core files in current directory
     alias rc='rm core.*'
 
-
-    ######################################################################
-    # Personal Functions/Aliases
-    ######################################################################
-
-    alias home='cd ~'
-    alias h='home'
-    alias quit='exit'
-    alias q='quit'
-    alias vi='vim'
-    alias c='clear'
-    alias ..='cd ..'
-    alias lh='ls -d .*' # hidden files only
-
-    # Various 'ls'
-    alias l='ll'
-    alias la='ls -la'
-
-    # Edit .bashrc or .vimrc
-    alias bashrc='vim ~/.bashrc'
-    alias vimrc='vim ~/.vimrc'
-    alias brc='bashrc'
-    alias vrc='vimrc'
-
-    # Load .bashrc
-    alias loadbrc='. ~/.bashrc'
-    alias lbrc='loadbrc'
-
-    # Copy files to dot-files
-    alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
-    # Push dot files to home directory
-    alias setdots='cp ~/dot-files/.gitconfig ~/.gitconfig && cp ~/dot-files/.bashrc ~/.bashrc && cp ~/dot-files/.vimrc ~/.vimrc && cp ~/dot-files/.bash_profile ~/.bash_profile && . ~/.bashrc' 
-
-    # Go backwards 'n' times
-    function cdn() { for i in `seq $1`; do cd ..; done; }
-
-    # Open octave
-    alias o='octave'
-
-    # Python 3
-    alias p='python3'
-
     ######################################################################
     # ENGR 142 Functions/Aliases
     ######################################################################
     alias egcc='gcc -Wall -Werror -lm'
     alias rfai='cd /share/engr14x && python3 rfai.py'
     alias eagle='ssh marinon@eagle.ecn.purdue.edu'
-
-    ######################################################################
-    # ECE 368 Functions/Aliases
-    ######################################################################
-    alias gcc='gcc -Werror -Wall -Wshadow'
-    alias valgrind='valgrind --leak-check=full'
-    alias v='valgrind'
-
-    # Jump to homework folder
-    function gg() {
-        # "" -> 368/
-        if [ $# -eq 0 ]; then # No input args
-            cd ~/368/
-        # Anything else -> 368/hw<arg>
-        else
-            cd ~/368/hw$1
-        fi
-    }
+    
 
 fi
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
