@@ -173,10 +173,10 @@ endif
 "
 if &t_Co > 2 || has("gui_running")
 	try
-		colorscheme summerfruit256 " might not be on every system
+		colorscheme monokai " might not be on every system
 		"hi colorcolumn ctermbg=LightYellow guibg=LightYellow
 	catch /^Vim\%((\a\+)\)\=:E185/
-		colorscheme slate          " backup, in case summerfruit was not available
+		colorscheme slate          " backup, in case monokai was not available
 	endtry
 
     syntax on
