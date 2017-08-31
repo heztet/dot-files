@@ -64,8 +64,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Open octave
     alias o='octave'
 
-    # Python 3
+    # Python
     alias p='python3'
+    alias p2='python'
 
     # GCC/Valgrind
     alias gcc='gcc -Werror -Wall -Wshadow'
