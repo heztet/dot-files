@@ -39,18 +39,6 @@ set cryptmethod=blowfish " use blowfish encryption for encrytped files
 let g:netrw_mouse_maps=0 " Ignore mouse clicks when browsing directories
 
 "_________________________________________________________________________
-" Create command to disable mouse and arrow keys if you wish (mainly for HW01)
-"
-function! DisableMouseAndArrowKeys()
-	map <up>   <nop>
-	map <down> <nop>
-	map <left> <nop>
-	map <up>   <nop>
-	set mouse=
-endfunction
-command DisableMouseAndArrowKeys :call DisableMouseAndArrowKeys()
-
-"_________________________________________________________________________
 " MAPPINGS for normal mode
 "
 
@@ -173,7 +161,7 @@ endif
 "
 if &t_Co > 2 || has("gui_running")
 	try
-		colorscheme monokai " might not be on every system
+		colorscheme codedark " might not be on every system
 		"hi colorcolumn ctermbg=LightYellow guibg=LightYellow
 	catch /^Vim\%((\a\+)\)\=:E185/
 		colorscheme slate          " backup, in case monokai was not available
