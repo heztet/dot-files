@@ -22,7 +22,7 @@ set shiftwidth=4         " pressing >> or << in normal mode indents by 4 charact
 set tabstop=4            " a tab character indents to the 4th (or 8th, 12th, etc.) column
 set viminfo='20,\"50     " read/write a .viminfo file, don't store more than 50 lines of registers
 set encoding=utf8        " non-ascii characters are encoded with UTF-8 by default
-set noexpandtab          " pressing the tab key creates a tab character, not spaces
+set expandtab            " pressing the tab key creates spaces
 set formatoptions=croq   " c=autowrap comments, r=continue comment on <enter>,
                          " o=continue comment on o or O, q=allow format comment with gqgq
 set textwidth=0          " no forced wrapping in any file type (unless overridden)

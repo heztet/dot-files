@@ -68,10 +68,16 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias p='python3'
     alias p2='python'
 
+    # Jupyter notebook
+    alias jn='jupyter notebook'
+
     # GCC/Valgrind
     alias gcc='gcc -Werror -Wall -Wshadow'
     alias valgrind='valgrind --leak-check=full'
     alias v='valgrind'
+
+    # Add local bin to PATH
+    export PATH=$PATH:~/.local/bin
 
     # mcd
     function mcd() {
@@ -113,7 +119,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # gdb core file maintenance
     # Core dump c files if crash
-    ulimit -c 2000 #unlimited
+    #ulimit -c 2000 #unlimited
     # Remove core files in current directory
     alias rc='rm core.*'
 
@@ -123,6 +129,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias egcc='gcc -Wall -Werror -lm'
     alias rfai='cd /share/engr14x && python3 rfai.py'
     alias eagle='ssh marinon@eagle.ecn.purdue.edu'
+
+    alias 364='ssh ee364e02@ecegrid.ecn.purdue.edu'
+    alias tag='echo "> git tag -a submission -m ..." && echo "> git push --tags"'
     
 
 fi
