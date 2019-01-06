@@ -30,6 +30,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Personal Functions/Aliases
     ######################################################################
 
+    # Quick log into ecegrid
+    alias ece='ssh marinon@ecegrid.ecn.purdue.edu'
+
     alias home='cd ~'
     alias h='home'
     alias quit='exit'
@@ -38,6 +41,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias c='clear'
     alias ..='cd ..'
     alias lh='ls -d .*' # hidden files only
+    
+    # Repeat the previous command with sudo
+    alias fuck='sudo $(fc -ln -1)'
 
     # Various 'ls'
     alias l='ll'
@@ -100,7 +106,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # print all of the places that contain an executable matching the argument
 
     # ls
-    if [ "${BASH_VERSINFO[5]}" == "x86_64-apple-darwin10.0" ]; then
+    if [ "$(uname)" == "Darwin" ]; then
         # Mac version of ls -- useful only if you copy this .bashrc to a Mac.
         alias ls='ls -G -p'
     else
