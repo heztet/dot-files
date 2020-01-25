@@ -29,10 +29,6 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     ######################################################################
     # Personal Functions/Aliases
     ######################################################################
-
-    # Quick log into ecegrid
-    alias ece='ssh marinon@ecegrid.ecn.purdue.edu'
-
     alias home='cd ~'
     alias h='home'
     alias quit='exit'
@@ -60,12 +56,18 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias lbrc='loadbrc'
 
     # Copy files to dot-files
-    alias copydots='cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile'
+    alias commitdots='echo "Dot files copied to ~/dot-files" && cp ~/.gitconfig ~/dot-files/.gitconfig && cp ~/.bashrc ~/dot-files/.bashrc && cp ~/.vimrc ~/dot-files/.vimrc && cp ~/.bash_profile ~/dot-files/.bash_profile && cp ~/.tmux.conf ~/dot-files/.tmux.conf'
     # Push dot files to home directory
-    alias setdots='cp ~/dot-files/.gitconfig ~/.gitconfig && cp ~/dot-files/.bashrc ~/.bashrc && cp ~/dot-files/.vimrc ~/.vimrc && cp ~/dot-files/.bash_profile ~/.bash_profile && . ~/.bashrc && cp -r ~/dot-files/vim/* ~/.vim/.'
+    alias loaddots='echo "~/dot-files copied to ~" && cp ~/dot-files/.gitconfig ~/.gitconfig && cp ~/dot-files/.bashrc ~/.bashrc && cp ~/dot-files/.vimrc ~/.vimrc && cp ~/dot-files/.bash_profile ~/.bash_profile && . ~/.bashrc && cp -r ~/dot-files/vim/* ~/.vim/. && cp ~/dot-files/.tmux.conf ~/.tmux.conf'
+
+    alias cdots='commitdots'
+    alias ldots='loaddots'
 
     # Go backwards 'n' times
-    function cdn() { for i in `seq $1`; do cd ..; done; }
+    function ddn() { for i in `seq $1`; do cd ..; done; }
+
+    # tmux
+    alias t='tmux'
 
     # Open octave
     alias o='octave'
@@ -122,23 +124,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     bind '"\e[A": history-search-backward'
     bind '"\e[B": history-search-forward'
     # Credit: 'user287613' @ http://askubuntu.com/a/475614 - License: CC-BY-SA-3.0
-
-    # gdb core file maintenance
-    # Core dump c files if crash
-    #ulimit -c 2000 #unlimited
-    # Remove core files in current directory
-    alias rc='rm core.*'
-
-    ######################################################################
-    # ENGR 142 Functions/Aliases
-    ######################################################################
-    alias egcc='gcc -Wall -Werror -lm'
-    alias rfai='cd /share/engr14x && python3 rfai.py'
-    alias eagle='ssh marinon@eagle.ecn.purdue.edu'
-
-    alias 364='ssh ee364e02@ecegrid.ecn.purdue.edu'
-    alias tag='echo "> git tag -a submission -m ..." && echo "> git push --tags"'
-    
-
 fi
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
