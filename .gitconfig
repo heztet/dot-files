@@ -52,3 +52,8 @@
 	s = status
 	###############
 	prettylog = log --graph --decorate --abbrev-commit --all --pretty=oneline
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process

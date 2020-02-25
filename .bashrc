@@ -130,3 +130,13 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+# Add /usr/local/bin to PATH
+export PATH="$PATH:/usr/local/bin"
+
+# Use pyenv for Python versioning
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
+alias python3="~/.pyenv/versions/$(echo -e $(pyenv versions | tail -1))/bin/python3"
+alias pip3="~/.pyenv/versions/$(echo -e $(pyenv versions | tail -1))/bin/pip3"
+
