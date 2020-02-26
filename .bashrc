@@ -134,9 +134,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:/usr/local/bin"
 
 # Use pyenv for Python versioning
-export PATH="$HOME/.pyenv/bin:$PATH"
+# Note: To set python and python3, use "pyenv [global|local] 2.7.x 3.x.x"
+export PATH="$PATH:$HOME/.pyenv/bin"
 eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
-alias python3="~/.pyenv/versions/$(echo -e $(pyenv versions | tail -1))/bin/python3"
-alias pip3="~/.pyenv/versions/$(echo -e $(pyenv versions | tail -1))/bin/pip3"
 
