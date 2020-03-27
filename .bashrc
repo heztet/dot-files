@@ -13,7 +13,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     #
     # Make your bash prompt show your current directory in color.
     # Credit:  Cygwin, license: GPL, from the default .bashrc that comes with Cygwin
-    export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\[\e[36m\]\$(parse_git_branch)\[\e[0m\]\n\$ "
+    export PS1="\[\e]0;\w\a\]\n\d \@ \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\[\e[36m\]\$(parse_git_branch)\[\e[0m\]\n\$ "
     export PS2='> '
     export PS4='+ '
     # To learn more about these codes, see:
@@ -36,14 +36,22 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias vi='vim'
     alias c='clear'
     alias ..='cd ..'
-    alias lh='ls -d .*' # hidden files only
     
     # Repeat the previous command with sudo
     alias fuck='sudo $(fc -ln -1)'
 
     # Various 'ls'
-    alias l='ll'
-    alias la='ls -la'
+    # Don't edit ls in case of bash scriptping
+    alias ll="ls -lhpG"
+    alias l="ll"
+    alias la="ls -lhAp"
+    alias lh="ls -dhp .*" # hidden files only
+
+    # ls for non-macOS
+    if [ "$(uname)" != "Darwin" ]; then
+        # GNU version of ls
+        alias ls='ls -F --color=tty -B'
+    fi
 
     # Edit .bashrc or .vimrc
     alias bashrc='vim ~/.bashrc'
@@ -62,6 +70,8 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     alias cdots='commitdots'
     alias ldots='loaddots'
+
+    alias dirs="dirs -v"
 
     # Go backwards 'n' times
     function ddn() { for i in `seq $1`; do cd ..; done; }
@@ -84,6 +94,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias valgrind='valgrind --leak-check=full'
     alias v='valgrind'
 
+    # Why is kubectl so many letters?
+    alias k='kubectl'
+
     # Add local bin to PATH
     export PATH=$PATH:~/.local/bin
 
@@ -99,42 +112,31 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # -r = --raw-control-chars .. means to display raw characters instead of
     # showing ^M, ^R, etc.
 
-    # rm
-    alias rm='rm'
-
     # whence
     alias whence='type -a'
     # prints description of a command (i.e., alias, location, etc.) -a means to
     # print all of the places that contain an executable matching the argument
 
-    # ls
-    if [ "$(uname)" == "Darwin" ]; then
-        # Mac version of ls -- useful only if you copy this .bashrc to a Mac.
-        alias ls='ls -G -p'
-    else
-        # GNU version of ls
-        alias ls='ls -F --color=tty -B'
-    fi
-
-    # ll
-    alias ll='ls -l'
-    # -l = use long listing format
-
     # Up arrow to search history
+    # Credit: 'user287613' @ http://askubuntu.com/a/475614 - License: CC-BY-SA-3.0
     bind '"\e[A": history-search-backward'
     bind '"\e[B": history-search-forward'
-    # Credit: 'user287613' @ http://askubuntu.com/a/475614 - License: CC-BY-SA-3.0
+
+    # macOS specific setup
+    if [ "$(uname)" == "Darwin" ]; then
+        # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+        export PATH="$PATH:$HOME/.rvm/bin"
+
+        # Add /usr/local/bin to PATH
+        export PATH="$PATH:/usr/local/bin"
+
+        # Use pyenv for Python versioning
+        # Note: To set python and python3, use "pyenv [global|local] 2.7.x 3.x.x"
+        export PATH="$PATH:$HOME/.pyenv/bin"
+        eval "$(pyenv init -)"
+        eval "$(pyenv virtualenv-init -)"
+    fi
 fi
+
+
 # vim: set tabstop=4 shiftwidth=4 fileencoding=utf8 expandtab filetype=sh:
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-# Add /usr/local/bin to PATH
-export PATH="$PATH:/usr/local/bin"
-
-# Use pyenv for Python versioning
-# Note: To set python and python3, use "pyenv [global|local] 2.7.x 3.x.x"
-export PATH="$PATH:$HOME/.pyenv/bin"
-eval "$(pyenv init -)"
-
