@@ -13,7 +13,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     #
     # Make your bash prompt show your current directory in color.
     # Credit:  Cygwin, license: GPL, from the default .bashrc that comes with Cygwin
-    export PS1="\[\e]0;\w\a\]\n\d \@ \[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\]\[\e[36m\]\$(parse_git_branch)\[\e[0m\]\n\$ "
+    export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\w\[\e[0m\]\[\e[36m\]\$(parse_git_branch)\[\e[0m\]\n\$ "
     export PS2='> '
     export PS4='+ '
     # To learn more about these codes, see:
@@ -44,8 +44,10 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Don't edit ls in case of bash scriptping
     alias ll="ls -lhpG"
     alias l="ll"
-    alias la="ls -lhAp"
+    alias la="ll -lhAp"
     alias lh="ls -dhp .*" # hidden files only
+
+    alias pd="pushd"
 
     # ls for non-macOS
     if [ "$(uname)" != "Darwin" ]; then
@@ -89,11 +91,21 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # Jupyter notebook
     alias jn='jupyter notebook'
+    alias g='git'
+    alias d='docker'
 
+    # Kubernetes aliases
     # Why is kubectl so many letters?
     alias k='kubectl'
+    alias kx='kubectx'
+    alias kns='kubens'
+    alias pods='kubectl get pods'
 
-    alias g='git'
+    # Prints the name of a RUNNING pod that includes the string first argument
+    getpod ()
+    {
+        kubectl get pods | grep $1 | awk '/Running/ {print $1}'
+    }
 
     # Add local bin to PATH
     export PATH=$PATH:~/.local/bin
@@ -122,6 +134,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     # macOS specific setup
     if [ "$(uname)" == "Darwin" ]; then
+        # Please stop pestering me about zsh
+        export BASH_SILENCE_DEPRECATION_WARNING=1
+
         # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
         export PATH="$PATH:$HOME/.rvm/bin"
 

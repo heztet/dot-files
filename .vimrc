@@ -38,8 +38,6 @@ set tabpagemax=30        " show up to 30 tabs
 set cryptmethod=blowfish " use blowfish encryption for encrytped files
 let g:netrw_mouse_maps=0 " Ignore mouse clicks when browsing directories
 
-set shell=/bin/bash      " Use bash as shell (zsh now default for macOS)
-
 "_________________________________________________________________________
 " MAPPINGS for normal mode
 "
