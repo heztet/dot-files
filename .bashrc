@@ -21,7 +21,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     #
     # DESKTOP LINUX FIXES
     # 256 color
-    if [ "$TERM" = xterm ]; then TERM=xterm-256color; fi 
+    if [ "$TERM" = xterm ]; then TERM=xterm-256color; fi
     # Vim as default editor
     export VISUAL=vim
     export EDITOR="$VISUAL"
@@ -36,7 +36,7 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     alias vi='vim'
     alias c='clear'
     alias ..='cd ..'
-    
+
     # Repeat the previous command with sudo
     alias fuck='sudo $(fc -ln -1)'
 
@@ -73,8 +73,9 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
 
     alias dirs="dirs -v"
 
-    # Go backwards 'n' times
-    function ddn() { for i in `seq $1`; do cd ..; done; }
+    ######################################################################
+    # One Letter Aliases
+    ######################################################################
 
     # tmux
     alias t='tmux'
@@ -89,13 +90,10 @@ if [[ $- =~ "i" ]]; then  # If this is an interactive session...
     # Jupyter notebook
     alias jn='jupyter notebook'
 
-    # GCC/Valgrind
-    alias gcc='gcc -Werror -Wall -Wshadow'
-    alias valgrind='valgrind --leak-check=full'
-    alias v='valgrind'
-
     # Why is kubectl so many letters?
     alias k='kubectl'
+
+    alias g='git'
 
     # Add local bin to PATH
     export PATH=$PATH:~/.local/bin

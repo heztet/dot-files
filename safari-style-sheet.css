@@ -1,3 +1,7 @@
+# safari-style-sheet.css
+#
+# Use in Safari > Preferences to have a nicer font for text-only pages
+
 body > pre {
     font-family: Menlo, Verdana, Geneva, Tahoma, sans-serif;
 }
