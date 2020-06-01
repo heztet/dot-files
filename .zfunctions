@@ -1,0 +1,9 @@
+#############################
+# ~/.zfunctions
+#############################
+
+# Prints the name of a RUNNING pod that includes the string first argument
+getpod ()
+{
+    kubectl get pods | grep $1 | awk '/Running/ {print $1}'
+}
