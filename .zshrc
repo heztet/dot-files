@@ -161,6 +161,7 @@ bindkey "${key[Down]}" history-substring-search-down
 
 # Source plugin
 . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
 # Keybindings
 bindkey '^ ' autosuggest-execute
@@ -178,3 +179,4 @@ eval "$(pyenv virtualenv-init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
