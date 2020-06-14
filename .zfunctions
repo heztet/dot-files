@@ -3,7 +3,65 @@
 #############################
 
 # Prints the name of a RUNNING pod that includes the string first argument
-getpod ()
-{
+getpod () {
     kubectl get pods | grep $1 | awk '/Running/ {print $1}'
 }
+
+# Prints the name of a running docker container that includes the string first argument
+getdock () {
+	docker ps | grep --color=auto $1 | awk '{print $1}'
+}
+
+# Search all history for whatever string is after histsearch SEARCHSTR
+histsearch() {
+    fc -lim "*$@*" 1
+}
+
+# Prints kube env that matches first arg
+getkx() {
+    kubectx | grep $1
+}
+
+function unset_aws_envs ()
+{
+    for ID in $(env | grep AWS | cut -d '=' -f 1);
+    do
+        unset "${ID}";
+    done
+}
+
+# Sets AWS keys for MFA accounds
+function getsessiontoken ()
+{
+    if [ -z ${1+x} ]; then
+        echo "Usage: getsessiontoken MFA_CODE"
+        return
+    fi
+
+    unset_aws_envs
+    CREDENTIALS=$( aws sts get-session-token --serial-number "arn:aws:iam::685917037183:mfa/Nicky" --token-code $1);
+    export AWS_ACCESS_KEY_ID=$(echo -n "${CREDENTIALS}" | jq '.Credentials.AccessKeyId' | tr -d '"');
+    export AWS_SECRET_ACCESS_KEY=$(echo -n "${CREDENTIALS}" | jq '.Credentials.SecretAccessKey' | tr -d '"');
+    export AWS_SESSION_TOKEN=$(echo -n "${CREDENTIALS}" | jq '.Credentials.SessionToken' | tr -d '"');
+    echo -n "AWS_ACCESS_KEY_ID=";
+    echo "${AWS_ACCESS_KEY_ID}";
+    echo -n "AWS_SECRET_ACCESS_KEY=";
+    echo "${AWS_SECRET_ACCESS_KEY}";
+    echo -n "AWS_SESSION_TOKEN=";
+    echo "${AWS_SESSION_TOKEN}"
+}
+
+# Sets AWS keys without an MFA account
+# Can add additional parameters like --profile PROFILE
+#aws sts get-session-token --profile iia | jq '.Credentials.AccessKeyId'
+function setaws () {
+    creds=$(aws sts get-session-token $@);
+    export AWS_ACCESS_KEY_ID=$(echo -n "${creds}" | jq '.Credentials.AccessKeyId' | tr -d '"');
+    export AWS_SECRET_ACCESS_KEY=$(echo -n "${creds}" | jq '.Credentials.SecretAccessKey' | tr -d '"');
+    export AWS_SESSION_TOKEN=$(echo -n "${creds}" | jq '.Credentials.SessionToken' | tr -d '"');
+    
+    echo "export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}";
+    echo "export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}";
+    echo "export AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}";
+}
+
