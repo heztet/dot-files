@@ -3,9 +3,22 @@
 #############################
 
 # Prints the name of a RUNNING pod that includes the string first argument
-getpod () {
+function getpod () {
     kubectl get pods | grep $1 | awk '/Running/ {print $1}'
 }
+
+# Bashes into a RUNNING pod that includes the string first argument
+function podsh () {
+    if [ -z ${1} ]; then
+        echo "Error: No pod name given"
+        return;
+    fi
+
+    PODNAME=$(kubectl get pods | grep $1 | awk '/Running/ {print $1}') 
+    echo "Bashing into $PODNAME"
+    kubectl exec -it $PODNAME -- /bin/sh
+}
+
 
 # Prints the name of a running docker container that includes the string first argument
 getdock () {
